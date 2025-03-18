@@ -26,7 +26,7 @@ const adminCookie = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         req.logger.info(`Endpoint: /auth/google/callback , creando cookie del administrador`);
         const data = yield (0, generaJWT_1.default)(adminData);
         res.cookie("_dm_admin", data, {
-            httpOnly: false,
+            httpOnly: true,
             secure: false,
             sameSite: true,
         });

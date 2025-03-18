@@ -12,9 +12,7 @@ const config_1 = require("./config/config");
 const dotenv_1 = __importDefault(require("dotenv"));
 const passport_1 = __importDefault(require("./middlewares/passport"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
-//agregar backurls reales
 //agregar credenciales de produccion
-//credenciales en variables de entorno
 dotenv_1.default.config({
     override: true,
     path: __dirname + "/.env.sample"
@@ -26,8 +24,8 @@ app.use(express_1.default.json({ limit: '10mb' })); // Aquí también puedes con
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cookie_parser_1.default)());
 app.use((0, cors_1.default)({
-    origin: ["https://dmotos.netlify.app", "https://dmotos.onrender.com"],
-    credentials: true,
+    origin: ["http://localhost:3000", "http://localhost:8080"],
+    credentials: true
 }));
 app.use("/api/products", products_router_1.default);
 app.use("/", passport_router_1.default);

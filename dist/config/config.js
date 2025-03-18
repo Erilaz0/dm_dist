@@ -11,5 +11,6 @@ exports.config = {
     JWTKEY: process.env.JWTKEY,
     FRONTHOST: process.env.FRONTHOST,
     LEVEL: process.env.LEVEL,
-    ID: process.env.ID
+    ID: process.env.ID,
+    ACCES_TOKEN: process.env.ACCES_TOKEN
 };

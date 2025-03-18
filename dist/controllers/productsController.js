@@ -172,10 +172,10 @@ const updateTheProduct = (req, res) => __awaiter(void 0, void 0, void 0, functio
 });
 exports.updateTheProduct = updateTheProduct;
 const getPreference = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body)
     req.logger.info(`Endpoint: /get-preference`);
     const client = new mercadopago_1.MercadoPagoConfig({ accessToken: process.env.ACCES_TOKEN });
-    console.log(client)
+    req.logger.info(client);
+    req.logger.info(req.body);
     try {
         const items = req.body.map((item) => ({
             id: item.product.id,
@@ -184,7 +184,6 @@ const getPreference = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             unit_price: parseInt(item.product.price),
             currency_id: "UY"
         }));
-        console.log(items)
         const body = {
             items: items,
             back_urls: {
@@ -195,15 +194,15 @@ const getPreference = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             auto_return: "approved",
         };
         const preference = new mercadopago_1.Preference(client);
-        console.log(preference)
+        req.logger.info(preference);
         const result = yield preference.create({ body });
-        console.log(result)
+        req.logger.info(result);
         res.status(200).json({ id: result.id });
     }
     catch (error) {
-        req.logger.info("error preference")
-        console.log(error)
-        res.status(400).json({ message : error });
+        req.logger.info("Endpoint: /get-preference - ERROR");
+        req.logger.info(error);
+        res.status(400).json({ message: error });
     }
 });
 exports.getPreference = getPreference;
