@@ -174,8 +174,8 @@ exports.updateTheProduct = updateTheProduct;
 const getPreference = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     req.logger.info(`Endpoint: /get-preference`);
     const client = new mercadopago_1.MercadoPagoConfig({ accessToken: process.env.ACCES_TOKEN });
-    req.logger.info(client);
-    req.logger.info(req.body);
+    console.log(client);
+    console.log(req.body);
     try {
         const items = req.body.map((item) => ({
             id: item.product.id,
@@ -194,14 +194,14 @@ const getPreference = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             auto_return: "approved",
         };
         const preference = new mercadopago_1.Preference(client);
-        req.logger.info(preference);
+        console.log(preference);
         const result = yield preference.create({ body });
-        req.logger.info(result);
+        console.log(result);
         res.status(200).json({ id: result.id });
     }
     catch (error) {
         req.logger.info("Endpoint: /get-preference - ERROR");
-        req.logger.info(error);
+        console.log(error);
         res.status(400).json({ message: error });
     }
 });

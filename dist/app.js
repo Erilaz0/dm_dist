@@ -24,7 +24,7 @@ app.use(express_1.default.json({ limit: '10mb' })); // Aquí también puedes con
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cookie_parser_1.default)());
 app.use((0, cors_1.default)({
-    origin: ["http://localhost:3000", "http://localhost:8080"],
+    origin: ["https://dmotos.netlify.app", "https://dmotos.onrender.com"],
     credentials: true
 }));
 app.use("/api/products", products_router_1.default);
